@@ -1,0 +1,9 @@
+{{#if mensajes.length}}
+    <ul class="list-group list-group-flush">
+        {{#each mensajes}}
+            <li id="mensajesHistorial" style="display: flex;" class="list-group-item">
+                <p id="correo">{{this.correo}}:&nbsp;</p><p id="msj">{{this.msj}}</p><p id="fechaMensaje">{{this.hs}}</p>
+            </li>
+        {{/each}}
+    </ul>
+{{/if}}
