@@ -2,6 +2,7 @@ import express from 'express';
 import {optionsMDB} from '../options/mariaDB.js';
 import { optionsSQL } from '../options/SQLite3.js';
 import tableBuilder from './classConstructorTable.js';
+import routerProductosTest from './router/routerProductosTest.js';
 
 import {Server as HttpServer} from 'http';
 import {Server as IOServer} from 'socket.io';
@@ -18,9 +19,6 @@ const server = httpServer.listen(8080, ()=>{
     console.log(`Servidor conectado. Puerto: ${server.address().port}`);
 })
 server.on('error', error => console.log((`Error en servidor ${error}`)));
-
-
-
 
 const productos=[];
 const mensajes =[];
@@ -49,7 +47,8 @@ io.on('connection', (socket)=>{
     socket.on('nuevoProducto', async (data) =>{
         productos.push(data);
 
-        console.log(await mDB.insertValue(data, 1));
+        const mDBInserValue = await mDB.insertValue(data, 1)
+        console.log(mDBInserValue);
 
         io.sockets.emit('productos', productos);
     });
@@ -59,7 +58,9 @@ io.on('connection', (socket)=>{
 
         mensajes.push(data);
 
-        console.log(await sql.insertValue(data, 2));
+        const sqlInserValue = await sql.insertValue(data, 2)
+
+        console.log(sqlInserValue);
 
         io.sockets.emit('mensajes', mensajes);
     });

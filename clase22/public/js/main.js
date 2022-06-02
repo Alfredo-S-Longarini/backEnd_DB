@@ -22,13 +22,20 @@ registroMsj.addEventListener('submit', e=>{
     e.preventDefault();
 
     const mensaje = {
-        correo: registroMsj[0].value,
-        msj: registroMsj[1].value
+        author:{
+            id: registroMsj[0].value,
+            nombre: registroMsj[1].value,
+            apellido: registroMsj[2].value,
+            edad: registroMsj[3].value,
+            alias: registroMsj[4].value,
+            avatar: registroMsj[5].value
+        },
+        text: registroMsj[6].value
     }
 
     socket.emit('nuevoMsj', mensaje)
 
-    registroMsj[1].value ="";
+    registroMsj[6].value ="";
     autoScroll()
 })
 
@@ -51,8 +58,10 @@ async function eventProductos(productos){
 
 }
 
-socket.on('mensajes', (data)=>{
-    eventMensajes(data);
+socket.on('mensajes', (data, entity)=>{
+    const dataDenormalized = denormalize(data.result, [entity], data.entities)
+    console.log(dataDenormalized);
+    eventMensajes(dataDenormalized);
 });
 
 async function eventMensajes(mensajes){
