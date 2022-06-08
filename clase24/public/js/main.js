@@ -58,20 +58,15 @@ async function eventProductos(productos){
 
 }
 
-// socket.on('mensajes', (data, entity)=>{
-//     console.log(data);
-//     console.log(entity);
-//     const denormalize = require('normalizr')
-//     const object = denormalize(data.result, [entity], data.entities);
-//     print2(object)
-//     // eventMensajes(normalizr.denormalize(data.result, [entity], data.entities))
-// });
+socket.on('mensajes', data=>{
+    eventMensajes(data)
+});
 
-// async function eventMensajes(mensajes){
-//     const callMsj = await fetch('plantillas/mensajes.hbs');
-//     const textoMsj = await callMsj.text();
-//     const compileMsj = Handlebars.compile(textoMsj);
-//     const htmlMsj = compileMsj({mensajes});
+async function eventMensajes(mensajes){
+    const callMsj = await fetch('plantillas/mensajes.hbs');
+    const textoMsj = await callMsj.text();
+    const compileMsj = Handlebars.compile(textoMsj);
+    const htmlMsj = compileMsj({mensajes});
 
-//     document.getElementById('msjArea').innerHTML = htmlMsj;
-// };
+    document.getElementById('msjArea').innerHTML = htmlMsj;
+};

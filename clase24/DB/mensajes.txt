@@ -32,43 +32,7 @@
       "alias": "Alfred",
       "avatar": "asdsadsa"
     },
-    "text": "Hola",
-    "id": 1
-  },
-  {
-    "author": {
-      "id": "alfred@test.com",
-      "nombre": "Alfred",
-      "apellido": "Longa",
-      "edad": "22",
-      "alias": "Alfred",
-      "avatar": "asdsadsa"
-    },
-    "text": "Hola",
-    "id": 1
-  },
-  {
-    "author": {
-      "id": "alfred@test.com",
-      "nombre": "Alfred",
-      "apellido": "Longa",
-      "edad": "22",
-      "alias": "Alfred",
-      "avatar": "asdsadsa"
-    },
     "text": "Hola, como estas?",
-    "id": 1
-  },
-  {
-    "author": {
-      "id": "gaby@test.com",
-      "nombre": "Gaby",
-      "apellido": "Longa",
-      "edad": "37",
-      "alias": "Gaby",
-      "avatar": "asdsadsdsd"
-    },
-    "text": "Como estas?",
     "id": 1
   }
 ]

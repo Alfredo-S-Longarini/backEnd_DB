@@ -2,10 +2,6 @@ import express from 'express';
 import routerProductosTest from './router/routerProductosTest.js';
 import archivosMensajes from './container/archivosMensajes.js';
 import archivosProductos from './container/archivosProductos.js';
-import { agregarMsjHtml } from '../public/js/agregarMsj.js';
-
-import { normalize, denormalize, schema } from "normalizr";
-import util from 'util';
 
 import {Server as HttpServer} from 'http';
 import {Server as IOServer} from 'socket.io';
@@ -16,7 +12,7 @@ const io = new IOServer(httpServer);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('clase22/public'));
+app.use(express.static('clase24/public'));
 
 app.use('/api/productos-test', routerProductosTest)
 
@@ -29,35 +25,16 @@ let idMsj=1
 const productos=[];
 const mensajes =[];
 
-function print(objeto) {
-    console.log(util.inspect(objeto, false, 12, true))
-}
-
 const fileMsj = new archivosMensajes()
 const fileProductos = new archivosProductos()
 
-const usuariosEntity = new schema.Entity('author', {idAttribute: 'id'})
-
-const mensajesEntity = new schema.Entity('mensajes', {
-    author: usuariosEntity
-}, {idAttribute: 'id'})
-
-// const allMsjFile= await fileMsj.listMsj()
+const allMsjFile= await fileMsj.listMsj()
 const allProductosFile = await fileProductos.listProductos()
 
-io.on('connection', async (socket)=>{
-
-    const allMsjFile= await fileMsj.listMsj()
-
-
-
-    const msjNormalizr = normalize(allMsjFile, [mensajesEntity])
-    agregarMsjHtml(msjNormalizr, mensajesEntity)
-
-    socket.emit('mensajes', msjNormalizr, mensajesEntity);
-
-
+io.on('connection', (socket)=>{
+    console.log(allMsjFile);
     socket.emit('productos', allProductosFile);
+    socket.emit('mensajes', allMsjFile);
 
     socket.on('nuevoProducto', async (data) =>{
         productos.push(data);
