@@ -1,2 +1,32 @@
 [
+  {
+    "id": 6,
+    "nombre": "Mesa",
+    "precio": "715.00",
+    "img": "http://placeimg.com/640/480/business"
+  },
+  {
+    "id": 7,
+    "nombre": "Ordenador",
+    "precio": "349.00",
+    "img": "http://placeimg.com/640/480/fashion"
+  },
+  {
+    "id": 8,
+    "nombre": "Pollo",
+    "precio": "455.00",
+    "img": "http://placeimg.com/640/480/transport"
+  },
+  {
+    "id": 9,
+    "nombre": "Mesa",
+    "precio": "403.00",
+    "img": "http://placeimg.com/640/480/transport"
+  },
+  {
+    "id": 10,
+    "nombre": "Toallas",
+    "precio": "511.00",
+    "img": "http://placeimg.com/640/480/business"
+  }
 ]

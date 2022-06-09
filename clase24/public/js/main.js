@@ -58,9 +58,32 @@ async function eventProductos(productos){
 
 }
 
-socket.on('mensajes', data=>{
-    eventMensajes(data)
+const authorEntity = new normalizr.schema.Entity('author', {}, { idAttribute: 'id' });
+
+const mensajeEntity = new normalizr.schema.Entity('post', { author: authorEntity }, { idAttribute: '_id' })
+
+const mensajesEntity = new normalizr.schema.Entity('posts', { mensajes: [ mensajeEntity ] }, { idAttribute: 'id' })
+
+socket.on('mensajes', (data)=>{
+    const object = normalizr.denormalize(data.result, [mensajesEntity], data.entities);
+    console.log(object);
+    eventMensajes(object)
+
+    let msjNormalizeSize = JSON.stringify(data).length
+    let msjDenormalizeSize = JSON.stringify(object).length
+
+    let porcentajeComp = parseInt((msjNormalizeSize * 100) / msjDenormalizeSize)
+    compresionMensajes(porcentajeComp)
 });
+
+async function compresionMensajes(porcentaje){
+    const callPlantilla = await fetch('plantillas/porcentaje.hbs')
+    const textoPlantilla = await callPlantilla.text()
+    const compilePlantilla = Handlebars.compile(textoPlantilla)
+    const htmlPorcentaje = compilePlantilla({porcentaje})
+
+    document.getElementById('areaPorcentaje').innerHTML = htmlPorcentaje
+}
 
 async function eventMensajes(mensajes){
     const callMsj = await fetch('plantillas/mensajes.hbs');
@@ -70,3 +93,17 @@ async function eventMensajes(mensajes){
 
     document.getElementById('msjArea').innerHTML = htmlMsj;
 };
+
+const formularioLogin = document.getElementById('login');
+formularioLogin.addEventListener('submit', e => {
+    let userName = ''
+    
+    userName = formularioLogin[0].value
+
+    socket.emit('newUser', userName)
+
+})
+
+socket.on("saludo", data=>{
+    console.log(data.saludo);
+})

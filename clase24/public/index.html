@@ -31,84 +31,101 @@
                         <div class="navbar-nav">
                             <a class="nav-link active" aria-current="page" href="/">Formulario</a>
                         </div>
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="api/productos-test">Productos Faker</a>
+                        </div>
                     </div>
                 </div>
             </nav>
         </header>
     
-        <main id="mainIndex">
-
-            <div class="col-lg-5 border">
-
-                <form id="registroProductos">
-    
-                    <legend style="text-align: center;">
-                        <h2>Agregar Producto</h2>
-                    </legend>
-    
-                    <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
-                    <input id="nombreProducto" type="text" name="name" class="form-control"
-                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-    
-                    <label style="margin-top: 10px;" for="exampleFormControlInput1" class="form-label">Precio:</label>
-                    <input id="precioProducto" type="number" name="precio" class="form-control"
-                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-
-                    <label style="margin-top: 10px;" for="exampleFormControlInput1" class="form-label">Stock:</label>
-                    <input id="stockProducto" type="number" name="stock" class="form-control"
-                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
-    
-                    <label style="margin-top: 10px;" for="exampleFormControlInput1" class="form-label">Url imagen:</label>
-                    <input id="imgProducto" type="text" name="urlImg" class="form-control" aria-label="Sizing example input"
-                        aria-describedby="inputGroup-sizing-default">
-    
-                    <button type="submit" style="margin-top: 10px;" class="btn btn-primary">Enviar</button>
-    
-                </form>
-
-                <section style="text-align: center; margin: 20px;">
-                    <h2>Lista Productos</h2>
-                    <div id="prodList">
+        <main>
+            <form id="login" action="/con-session" method="get">
+                <div class="row" style="display: flex; justify-content:center;">
+                    <div class="input-group mb-3" style="width: 50%; padding-top: 10px;">
+                        <input name="nameUser" type="text" class="form-control" placeholder="Nombre de usuario" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Login</button>
                     </div>
-                </section>
+                </div>
+            </form>
+
+            <div id="mainIndex" class="row">
+                <div class="col-lg-5 border">
+
+                    <form id="registroProductos">
+        
+                        <legend style="text-align: center;">
+                            <h2>Agregar Producto</h2>
+                        </legend>
+        
+                        <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
+                        <input id="nombreProducto" type="text" name="name" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        
+                        <label style="margin-top: 10px;" for="exampleFormControlInput1" class="form-label">Precio:</label>
+                        <input id="precioProducto" type="number" name="precio" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
     
-            </div>
+                        <label style="margin-top: 10px;" for="exampleFormControlInput1" class="form-label">Stock:</label>
+                        <input id="stockProducto" type="number" name="stock" class="form-control"
+                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required>
+        
+                        <label style="margin-top: 10px;" for="exampleFormControlInput1" class="form-label">Url imagen:</label>
+                        <input id="imgProducto" type="text" name="urlImg" class="form-control" aria-label="Sizing example input"
+                            aria-describedby="inputGroup-sizing-default">
+        
+                        <button type="submit" style="margin-top: 10px;" class="btn btn-primary">Enviar</button>
+        
+                    </form>
+    
+                    <section style="text-align: center; margin: 20px;">
+                        <h2>Lista Productos</h2>
+                        <div id="prodList">
+                        </div>
+                    </section>
+        
+                </div>
+    
+                <div class="col-lg-5 border">
+                    <form id="registroMsj">
+                        <legend style="text-align: center;">
+                            <h2>Chat</h2>
+                            <div id="areaPorcentaje">
+    
+                            </div>
+                        </legend>
+    
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo</label>
+                            <input name="correo" placeholder="ejemplo@ejemplo.com" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                            
+                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                            <input name="nombre" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    
+                            <label for="exampleInputEmail1" class="form-label">Apellido</label>
+                            <input name="apellido" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    
+                            <label for="exampleInputEmail1" class="form-label">Edad</label>
+                            <input name="edad" placeholder="" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    
+                            <label for="exampleInputEmail1" class="form-label">Alias</label>
+                            <input name="alias" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+    
+                            <label for="exampleInputEmail1" class="form-label">Avatar</label>
+                            <input name="avatar" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                        </div>
+    
+                        <h4>Area de Mensajes</h4>
+                        <div id="msjArea">
+                        </div>
+    
+                        <div class="input-group mb-3">
+                            <input id="inputMsj" name="mensaje" type="text" class="form-control" placeholder="Mensaje" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button type="submit" class="btn btn-primary" type="button" id="button-addon2">Enviar</button>
+                        </div>
+                    </form>
+                </div>
 
-            <div class="col-lg-5 border">
-                <form id="registroMsj">
-                    <legend style="text-align: center;">
-                        <h2>Chat</h2>
-                    </legend>
-
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Correo</label>
-                        <input name="correo" placeholder="ejemplo@ejemplo.com" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                        
-                        <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                        <input name="nombre" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-                        <label for="exampleInputEmail1" class="form-label">Apellido</label>
-                        <input name="apellido" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-                        <label for="exampleInputEmail1" class="form-label">Edad</label>
-                        <input name="edad" placeholder="" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-                        <label for="exampleInputEmail1" class="form-label">Alias</label>
-                        <input name="alias" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-
-                        <label for="exampleInputEmail1" class="form-label">Avatar</label>
-                        <input name="avatar" placeholder="" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-                    </div>
-
-                    <h4>Area de Mensajes</h4>
-                    <div id="msjArea">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input id="inputMsj" name="mensaje" type="text" class="form-control" placeholder="Mensaje" aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <button type="submit" class="btn btn-primary" type="button" id="button-addon2">Enviar</button>
-                    </div>
-                </form>
             </div>
         </main>
 
@@ -118,6 +135,7 @@
     </div>
 </body>
 
+<script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
 <script src="js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
