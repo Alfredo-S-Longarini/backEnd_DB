@@ -2,10 +2,8 @@ import express from 'express';
 import routerProductosTest from './router/routerProductosTest.js';
 import archivosMensajes from './container/archivosMensajes.js';
 import archivosProductos from './container/archivosProductos.js';
-import { agregarMsjHtml } from '../public/js/agregarMsj.js';
 
 import { normalize, denormalize, schema } from "normalizr";
-import util from 'util';
 
 import {Server as HttpServer} from 'http';
 import {Server as IOServer} from 'socket.io';
@@ -27,37 +25,32 @@ server.on('error', error => console.log((`Error en servidor ${error}`)));
 
 let idMsj=1
 const productos=[];
-const mensajes =[];
+let mensajes =[];
 
-function print(objeto) {
-    console.log(util.inspect(objeto, false, 12, true))
+async function normalizarMensajes(){
+    const arrayMensajes = await fileMsj.listMsj()
+    const msjNormalizr = normalize(arrayMensajes, [mensajesEntity])
+    return msjNormalizr
 }
+
 
 const fileMsj = new archivosMensajes()
 const fileProductos = new archivosProductos()
 
-const usuariosEntity = new schema.Entity('author', {idAttribute: 'id'})
+const authorEntity = new schema.Entity('author', {}, { idAttribute: 'id' });
 
-const mensajesEntity = new schema.Entity('mensajes', {
-    author: usuariosEntity
-}, {idAttribute: 'id'})
+const mensajeEntity = new schema.Entity('post', { author: authorEntity }, { idAttribute: '_id' })
 
-// const allMsjFile= await fileMsj.listMsj()
+const mensajesEntity = new schema.Entity('posts', { mensajes: [ mensajeEntity ] }, { idAttribute: 'id' })
+
 const allProductosFile = await fileProductos.listProductos()
 
 io.on('connection', async (socket)=>{
+    const allMsj = await normalizarMensajes()
 
-    const allMsjFile= await fileMsj.listMsj()
+    socket.emit('mensajes', allMsj);
 
-
-
-    const msjNormalizr = normalize(allMsjFile, [mensajesEntity])
-    agregarMsjHtml(msjNormalizr, mensajesEntity)
-
-    socket.emit('mensajes', msjNormalizr, mensajesEntity);
-
-
-    socket.emit('productos', allProductosFile);
+    socket.emit('productos', allProductosFile); 
 
     socket.on('nuevoProducto', async (data) =>{
         productos.push(data);
@@ -72,10 +65,10 @@ io.on('connection', async (socket)=>{
 
         idMsj++
 
-        mensajes.push(data);
-
         await fileMsj.saveMsj(data)
 
-        io.sockets.emit('mensajes', mensajes);
+        const updateMsj = await normalizarMensajes()
+
+        io.sockets.emit('mensajes', updateMsj);
     });
 })

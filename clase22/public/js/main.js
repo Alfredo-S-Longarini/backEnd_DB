@@ -58,20 +58,38 @@ async function eventProductos(productos){
 
 }
 
-// socket.on('mensajes', (data, entity)=>{
-//     console.log(data);
-//     console.log(entity);
-//     const denormalize = require('normalizr')
-//     const object = denormalize(data.result, [entity], data.entities);
-//     print2(object)
-//     // eventMensajes(normalizr.denormalize(data.result, [entity], data.entities))
-// });
+const authorEntity = new normalizr.schema.Entity('author', {}, { idAttribute: 'id' });
 
-// async function eventMensajes(mensajes){
-//     const callMsj = await fetch('plantillas/mensajes.hbs');
-//     const textoMsj = await callMsj.text();
-//     const compileMsj = Handlebars.compile(textoMsj);
-//     const htmlMsj = compileMsj({mensajes});
+const mensajeEntity = new normalizr.schema.Entity('post', { author: authorEntity }, { idAttribute: '_id' })
 
-//     document.getElementById('msjArea').innerHTML = htmlMsj;
-// };
+const mensajesEntity = new normalizr.schema.Entity('posts', { mensajes: [ mensajeEntity ] }, { idAttribute: 'id' })
+
+socket.on('mensajes', (data)=>{
+    const object = normalizr.denormalize(data.result, [mensajesEntity], data.entities);
+    console.log(object);
+    eventMensajes(object)
+
+    let msjNormalizeSize = JSON.stringify(data).length
+    let msjDenormalizeSize = JSON.stringify(object).length
+
+    let porcentajeComp = parseInt((msjNormalizeSize * 100) / msjDenormalizeSize)
+    compresionMensajes(porcentajeComp)
+});
+
+async function compresionMensajes(porcentaje){
+    const callPlantilla = await fetch('plantillas/porcentaje.hbs')
+    const textoPlantilla = await callPlantilla.text()
+    const compilePlantilla = Handlebars.compile(textoPlantilla)
+    const htmlPorcentaje = compilePlantilla({porcentaje})
+
+    document.getElementById('areaPorcentaje').innerHTML = htmlPorcentaje
+}
+
+async function eventMensajes(mensajes){
+    const callMsj = await fetch('plantillas/mensajes.hbs');
+    const textoMsj = await callMsj.text();
+    const compileMsj = Handlebars.compile(textoMsj);
+    const htmlMsj = compileMsj({mensajes});
+
+    document.getElementById('msjArea').innerHTML = htmlMsj;
+};

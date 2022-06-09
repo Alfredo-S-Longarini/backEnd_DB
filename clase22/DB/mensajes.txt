@@ -13,51 +13,27 @@
   },
   {
     "author": {
-      "id": "gaby@test.com",
-      "nombre": "Gaby",
+      "id": "alfred@test.com",
+      "nombre": "Alfred",
       "apellido": "Longa",
-      "edad": "37",
-      "alias": "Gaby",
-      "avatar": "asdsadsdsd"
+      "edad": "22",
+      "alias": "Alfred",
+      "avatar": "asdsadsa"
     },
-    "text": "Hola, como estas?",
+    "text": "Como estas?",
     "id": 2
   },
   {
     "author": {
-      "id": "alfred@test.com",
-      "nombre": "Alfred",
+      "id": "gaby@test.com",
+      "nombre": "Gaby",
       "apellido": "Longa",
-      "edad": "22",
-      "alias": "Alfred",
-      "avatar": "asdsadsa"
+      "edad": "37",
+      "alias": "Gaby",
+      "avatar": "asdsadsdsd"
     },
-    "text": "Hola",
-    "id": 1
-  },
-  {
-    "author": {
-      "id": "alfred@test.com",
-      "nombre": "Alfred",
-      "apellido": "Longa",
-      "edad": "22",
-      "alias": "Alfred",
-      "avatar": "asdsadsa"
-    },
-    "text": "Hola",
-    "id": 1
-  },
-  {
-    "author": {
-      "id": "alfred@test.com",
-      "nombre": "Alfred",
-      "apellido": "Longa",
-      "edad": "22",
-      "alias": "Alfred",
-      "avatar": "asdsadsa"
-    },
-    "text": "Hola, como estas?",
-    "id": 1
+    "text": "Hola!",
+    "id": 3
   },
   {
     "author": {
@@ -68,7 +44,19 @@
       "alias": "Gaby",
       "avatar": "asdsadsdsd"
     },
-    "text": "Como estas?",
-    "id": 1
+    "text": "Bien, vos?",
+    "id": 4
+  },
+  {
+    "author": {
+      "id": "alfred@test.com",
+      "nombre": "Alfred",
+      "apellido": "Longa",
+      "edad": "22",
+      "alias": "Alfred",
+      "avatar": "asdsadsa"
+    },
+    "text": "Bien",
+    "id": 5
   }
 ]
