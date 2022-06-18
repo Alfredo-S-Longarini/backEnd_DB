@@ -1,0 +1,18 @@
+<div class="container text-center my-3">
+    <div class="jumbotron" style="background-color: rgb(255, 25, 0);color: white;">
+        <h1>Error en inicio de sesión!</h1>
+
+        <button class="btn btn-warning my-5" onclick="volver()">VOLVER</button>
+    </div>
+</div>
+
+<script>
+    function redireccionar(pagina) {
+        location.href = pagina;
+    } 
+
+    function volver() {
+        console.log('volver');
+        redireccionar('/')
+    }
+</script>

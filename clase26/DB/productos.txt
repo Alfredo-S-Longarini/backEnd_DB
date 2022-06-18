@@ -1,8 +1,0 @@
-[
-  {
-    "nombre": "Mochila",
-    "precio": "1800",
-    "stock": "43",
-    "img": "https://cdn-icons-png.flaticon.com/512/2333/2333041.png"
-  }
-]
