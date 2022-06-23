@@ -1,32 +1,32 @@
 [
   {
     "id": 1,
-    "nombre": "Patatas fritas",
-    "precio": "718.00",
-    "img": "http://placeimg.com/640/480/people"
+    "nombre": "Mesa",
+    "precio": "132.00",
+    "img": "http://placeimg.com/640/480/animals"
   },
   {
     "id": 2,
-    "nombre": "Ensalada",
-    "precio": "603.00",
-    "img": "http://placeimg.com/640/480/people"
+    "nombre": "Zapatos",
+    "precio": "568.00",
+    "img": "http://placeimg.com/640/480/sports"
   },
   {
     "id": 3,
-    "nombre": "Queso",
-    "precio": "47.00",
-    "img": "http://placeimg.com/640/480/technics"
+    "nombre": "Patatas fritas",
+    "precio": "552.00",
+    "img": "http://placeimg.com/640/480/food"
   },
   {
     "id": 4,
-    "nombre": "Mesa",
-    "precio": "479.00",
-    "img": "http://placeimg.com/640/480/fashion"
+    "nombre": "Pollo",
+    "precio": "794.00",
+    "img": "http://placeimg.com/640/480/people"
   },
   {
     "id": 5,
-    "nombre": "Coche",
-    "precio": "25.00",
-    "img": "http://placeimg.com/640/480/nightlife"
+    "nombre": "Pescado",
+    "precio": "426.00",
+    "img": "http://placeimg.com/640/480/city"
   }
 ]
