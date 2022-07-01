@@ -3,7 +3,7 @@ import ContenedorArchivos from "./containerArchivos.js";
 export default class archivosProductos extends ContenedorArchivos{
 
     constructor(){
-        super('clase22/DB/productos.txt')
+        super('clase30/DB/productos.txt')
     }
 
     async saveProduct(product){

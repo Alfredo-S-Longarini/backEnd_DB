@@ -20,7 +20,7 @@ const io = new IOServer(httpServer);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static('clase28/public'));
+app.use(express.static('clase30/public'));
 
 app.use((req,res,next)=>{
     req.io=io;
@@ -138,10 +138,24 @@ app.get('/logout', (req, res) => {
     })
 })
 
+//--------------------------------------------------------------------------------------------------------------------
+
+// Fork:
+// pm2 start clase30/src/server.js --name="ServerX" --watch -- PORT
+// pm2 start clase30/src/server.js --name="Server1" --watch -- 8081
+// pm2 start clase30/src/server.js --name="Server2" --watch -- 8082
+
+// Cluster:
+// pm2 start clase30/src/server.js --name="ServerX" --watch -i max -- PORT
+// pm2 start clase30/src/server.js --name="Server3" --watch -i max -- 8083
+// pm2 start clase30/src/server.js --name="Server4" --watch -i max -- 8084
+// pm2 list
+
 import { cpus } from 'os';
 import http from 'http'
 
 const numCpus = cpus().length
+const PORT = parseInt(process.argv[2]) || 8080
 
 if(cluster.isPrimary){
     console.log(`Primary ${process.pid} is running`);
@@ -158,7 +172,7 @@ if(cluster.isPrimary){
     http.createServer((req, res)=>{
         res.writeHead(200);
         res.end('Hello World')
-    }).listen(8080)
+    }).listen(PORT)
 
     console.log(`Worker ${process.pid} started`);
 }

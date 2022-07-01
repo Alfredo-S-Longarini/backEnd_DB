@@ -3,7 +3,7 @@ import ContenedorArchivos from "./containerArchivos.js";
 export default class archivosMensajes extends ContenedorArchivos{
 
     constructor(){
-        super('clase22/DB/mensajes.txt')
+        super('clase30/DB/mensajes.txt')
     }
 
     async saveMsj(msj){
